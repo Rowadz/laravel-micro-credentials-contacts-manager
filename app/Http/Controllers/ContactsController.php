@@ -28,6 +28,12 @@ class ContactsController extends Controller
 
     public function list_contacts()
     {
-        return view('list_contacts', ['contacts' => DB::table('contacts')->paginate(10)]);
+        // return view('list_contacts', ['contacts' => DB::table('contacts')->paginate(10)]);
+        return view('list_contacts', ['contacts' => Contact::with('user')->paginate(10)]);
+    }
+
+    public function view_contact($id)
+    {
+        return Contact::findOrFail($id);
     }
 }
