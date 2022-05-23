@@ -16,7 +16,7 @@ Route::get('/list-contacts', [ContactsController::class, 'list_contacts'])->name
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('create_contacts');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
