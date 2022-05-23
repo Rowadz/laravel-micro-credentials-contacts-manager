@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ContactsController extends Controller
@@ -20,6 +21,7 @@ class ContactsController extends Controller
         $contact->email = $request->input('email');
         $contact->phone = $request->input('phone');
         $contact->address = $request->input('address');
+        $contact->user_id = Auth::user()->id;
         $contact->save();
         return redirect()->route('home', ['saved' => true]);
     }
