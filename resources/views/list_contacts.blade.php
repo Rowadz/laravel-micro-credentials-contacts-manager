@@ -3,6 +3,13 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             All Contacts in DB with pagination
         </h2>
+        @if (request()->get('not_allowed'))
+            <div role="alert">
+              <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                You can't view that! you are not the owner
+              </div>
+            </div>
+        @endif
     </x-slot>
     
         <div class="flex flex-wrap m-14">
@@ -25,6 +32,9 @@
                       <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">
                         created by: ✏️ {{ $contact->user->name }}
                       </span>
+                      <a href="{{route('view-contacts', ['id'=> $contact->id ])}}" class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2 mb-2">
+                        👁️ See contact 
+                      </a>
                     </div>
                   </div>
                 @empty

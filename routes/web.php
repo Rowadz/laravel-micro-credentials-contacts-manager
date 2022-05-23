@@ -5,14 +5,16 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ContactsController;
 
 
-Route::get('/', [ContactsController::class, 'create_contacts_view'])->name('home');
+// Route::get('/', [ContactsController::class, 'create_contacts_view'])->name('login');
 
 
 Route::get('/test', [MyController::class, 'hi']);
 
-Route::post('/save-contacts', [ContactsController::class, 'save_contacts'])->name('save-contacts');
+Route::post('/save-contacts', [ContactsController::class, 'save_contacts'])->middleware(['auth'])->name('save-contacts');
 
-Route::get('/list-contacts', [ContactsController::class, 'list_contacts'])->name('list-contacts');
+Route::get('/list-contacts', [ContactsController::class, 'list_contacts'])->middleware(['auth'])->name('list-contacts');
+
+Route::get('/contact/{id}', [ContactsController::class, 'view_contact'])->middleware(['auth', 'is_owner'])->name('view-contacts');
 
 
 Route::get('/dashboard', function () {

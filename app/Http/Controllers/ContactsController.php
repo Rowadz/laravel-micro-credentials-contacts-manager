@@ -23,7 +23,7 @@ class ContactsController extends Controller
         $contact->address = $request->input('address');
         $contact->user_id = Auth::user()->id;
         $contact->save();
-        return redirect()->route('home', ['saved' => true]);
+        return redirect()->route('dashboard', ['saved' => true]);
     }
 
     public function list_contacts()
