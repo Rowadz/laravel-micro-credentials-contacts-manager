@@ -15,6 +15,7 @@ return new class extends Migration
     {
         // https://laravel.com/docs/9.x/migrations#foreign-key-constraints
         Schema::table('contacts', function (Blueprint $table) {
+            // added nullable because we have rows without user_id values
             $table->foreignId('user_id')->constrained('users')->nullable();
         });
     }
