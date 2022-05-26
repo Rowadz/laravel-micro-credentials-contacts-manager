@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -34,6 +35,10 @@ class ContactsController extends Controller
 
     public function view_contact($id)
     {
-        return Contact::findOrFail($id);
+        $contact = Contact::findOrFail($id);
+        if (!Gate::allows('is-owner', $contact)) {
+            abort(403);
+        }
+        return $contact;
     }
 }

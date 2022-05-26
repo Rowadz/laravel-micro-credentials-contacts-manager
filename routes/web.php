@@ -14,7 +14,12 @@ Route::post('/save-contacts', [ContactsController::class, 'save_contacts'])->mid
 
 Route::get('/list-contacts', [ContactsController::class, 'list_contacts'])->middleware(['auth'])->name('list-contacts');
 
-Route::get('/contact/{id}', [ContactsController::class, 'view_contact'])->middleware(['auth', 'is_owner'])->name('view-contacts');
+
+// using a middle ware
+// Route::get('/contact/{id}', [ContactsController::class, 'view_contact'])->middleware(['auth', 'is_owner'])->name('view-contacts');
+
+// using a gate
+Route::get('/contact/{id}', [ContactsController::class, 'view_contact'])->middleware(['auth'])->name('view-contacts');
 
 
 Route::get('/dashboard', function () {
