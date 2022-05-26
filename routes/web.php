@@ -5,7 +5,9 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ContactsController;
 
 
-// Route::get('/', [ContactsController::class, 'create_contacts_view'])->name('login');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::get('/test', [MyController::class, 'hi']);
